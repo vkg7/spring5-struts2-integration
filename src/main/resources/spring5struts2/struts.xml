@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <!-- devMode is helpful when you want some extra logs for debugging -->
+    <constant name="struts.devMode" value="true" />
+    <!-- Global message resource;
+         Otherwise you will have seperate message resource for each Action
+    -->
+    <constant name="struts.custom.i18n.resources" value="messages" />
+    <!--
+        This is important if you are planning to have slashes in Action URLs
+        e.g. In this demo, employee is deleted using URL /delete/10
+        This this is set to false; then struts will try to find mapping for
+        URL "/10" instaed of "/delete/10"
+     -->
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
+    <package name="default" namespace="/" extends="struts-default">
+        <global-results>
+            <result name="error">/views/error.jsp</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+        </global-exception-mappings>
+    </package>
+    <!-- Normal Action mappings are defined here -->
+    <!--<package name="user" namespace="/" extends="struts-default">
+        &lt;!&ndash; Two things to Notice:
+             1) class is set to 'editEmployeeAction' which is bean defined by Spring context
+             2) We have given the method to be called here as well;
+        &ndash;&gt;
+        <action name="showLoginPage" class="loginAction" method="showLoginPage">
+            <result name="input">/views/login.jsp</result>
+            <result name="success">/views/login.jsp</result>
+            <result name="error">/views/error.jsp</result>
+        </action>
+        <action name="login" class="loginAction" method="login">
+            <result name="input">/views/login.jsp</result>
+            <result name="success">/users</result>
+            <result name="error">/views/login.jsp</result>
+        </action>
+        <action name="users" class="userAction" method="getAllUsers">
+            <result name="success">/views/home.jsp</result>
+        </action>
+        <action name="showRegistrationPage" class="userAction" method="showRegistrationPage">
+            <result name="success">/views/register.jsp</result>
+        </action>
+        <action name="registerUser" class="userAction" method="saveUser">
+            <result type="redirect">/users</result>
+            <result name="error">/views/register.jsp</result>
+        </action>
+        <action name="delete/*" class="userAction" method="delete">
+            <param name="user.id">{1}</param>
+            <result type="redirect">/users</result>
+        </action>
+        <action name="update/*" class="userAction" method="update">
+            <param name="user.id">{1}</param>
+            <result name="success">/views/update.jsp</result>
+        </action>
+        <action name="updateUser" class="userAction" method="updateUser">
+            <result type="redirect">/users</result>
+            <result name="error">/views/update.jsp</result>
+        </action>
+        <action name="*" class="userAction" method="getAllUsers">
+            <result name="success">/views/home.jsp</result>
+        </action>
+    </package>-->
+    <constant name="struts.convention.result.path" value="/WEB-INF/views"></constant>
+</struts>
